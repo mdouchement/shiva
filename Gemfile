@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'rack-cors'
-gem 'mediainfo', '~> 0.7.2'
+gem 'ruby-audioinfo', '~> 0.5.1'
 
 group :development, :test do
   gem 'jazz_hands', git: 'https://github.com/nixme/jazz_hands',
@@ -24,4 +24,8 @@ end
 
 group :development do
   gem 'rubocop', '~> 0.29.1'
+end
+
+group :production do
+  gem 'puma', '~> 2.11.2'
 end

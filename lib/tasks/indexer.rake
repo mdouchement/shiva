@@ -1,8 +1,4 @@
-def duration(song)
-  info = Mediainfo.new(song)
-  match = info.streams.last.parsed_response[:audio]['duration_'].match(/(?<m>\d+)mn (?<s>\d+)s/)
-  match[:m].to_i * 60 + match[:s].to_i
-end
+require 'audioinfo'
 
 task indexer: :environment do
   music_directory = ARGV.last
@@ -12,11 +8,12 @@ task indexer: :environment do
   fail "#{music_directory} is not a directory" unless File.directory?(music_directory)
 
   Dir["#{music_directory}/**/*.{opus}"].each do |song|
+    info = AudioInfo.open(song)
     stream = Stream.find_by(path: song) || Stream.new(path: song)
     stream.update_attributes!(
       size: File.size(song),
       content_type: 'audio/ogg',
-      x_content_duration: duration(song)
+      x_content_duration: info.length
     )
     STDOUT.puts "Indexed #{stream[:id]} - #{song}"
   end
