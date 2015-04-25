@@ -3,8 +3,13 @@ begin
   load File.expand_path('../spring', __FILE__)
 rescue LoadError
 end
+
+def webrick?
+  %w(test development).include?(ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development') &&
+    !%w(g generate).include?(ARGV.first)
+end
+
 APP_PATH = File.expand_path('../../config/application', __FILE__)
 require_relative '../config/boot'
-require 'rails'
-ARGV << 'webrick' if %w(test development).include? Rails.env
+ARGV << 'webrick' if webrick?
 require 'rails/commands'
