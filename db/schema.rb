@@ -11,15 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328105119) do
+ActiveRecord::Schema.define(version: 20150425145203) do
 
   create_table "streams", force: :cascade do |t|
     t.string   "path"
     t.integer  "size"
     t.string   "content_type"
     t.float    "x_content_duration"
+    t.string   "hexdigest"
+    t.integer  "track_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string   "album"
+    t.string   "artist"
+    t.string   "title"
+    t.string   "track_number"
+    t.string   "hexdigest"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|

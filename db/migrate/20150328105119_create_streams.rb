@@ -5,6 +5,9 @@ class CreateStreams < ActiveRecord::Migration
       t.integer :size
       t.string :content_type
       t.float :x_content_duration
+      t.string :hexdigest
+
+      t.belongs_to :track
 
       t.timestamps null: false
     end
