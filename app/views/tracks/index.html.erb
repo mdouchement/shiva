@@ -1,5 +1,24 @@
-<% @tracks.each do |track| %>
-  <div>
-    <%= track.title %>
-  </div>
-<% end %>
+<div class="row">
+  <table role="grid">
+    <thead>
+      <tr>
+        <th width="200">Artist</th>
+        <th width="200">Album</th>
+        <th width="200">Track</th>
+        <th width="200">Title</th>
+        <th width="200"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tracks.each do |track| %>
+        <tr>
+          <td><%= track.artist %></td>
+          <td><%= track.album %></td>
+          <td><%= track.track_number %></td>
+          <td><%= track.title %></td>
+          <td><span><a href="<%= track_path(track.id) %>" class="button tiny info">Show</a></span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

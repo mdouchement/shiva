@@ -9,6 +9,7 @@ gem 'devise', '~> 3.4'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'foundation-rails', '~> 5.5.1.2'
 
 gem 'rack-cors'
 gem 'ruby-audioinfo', '~> 0.5.1'
