@@ -1,0 +1,26 @@
+<div class="row">
+  <%= form_for @playlist do |f| %>
+  <div class="panel-container">
+    <div class="panel-content">
+
+      <div class="row collapse">
+        <!-- name -->
+        <div class="columns small-12 medium-3">
+          <span class="prefix">Name</label>
+        </div>
+        <div class="columns small-12 medium-9">
+          <input id="name" required type="text" name="playlist[name]" value="<%= @playlist.name %>"/>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <ul class="button-group">
+          <li><a href="<%= playlists_path %>" class="button secondary">Cancel</a></li>
+          <li><button type="submit" class="success">Update</button></li>
+        </ul>
+      <div/>
+
+    </div>
+  </div>
+  <% end %>
+</div>

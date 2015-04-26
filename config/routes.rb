@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   resources :streams, only: :show
   resources :tracks
+  resources :playlists
 end

@@ -1,0 +1,21 @@
+<div class="row">
+  <table role="grid">
+    <thead>
+      <tr>
+        <th width="200">Name</th>
+        <th width="200">Number of tracks</th>
+        <th width="200"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @playlists.each do |playlist| %>
+        <tr>
+          <td><%= playlist.name %></td>
+          <td><%= playlist.tracks.count %></td>
+          <td><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info">Edit</a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="<%= new_playlist_path %>" class="button radius secondary">+</a>
+</div>
