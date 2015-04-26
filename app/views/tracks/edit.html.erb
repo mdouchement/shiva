@@ -1,0 +1,61 @@
+<div class="row">
+  <%= form_for @track do |f| %>
+  <div class="panel-container">
+    <div class="panel-content">
+
+      <div class="row collapse">
+        <!-- track number -->
+        <div class="columns small-12 medium-3">
+          <span class="prefix">Track number</label>
+        </div>
+        <div class="columns small-12 medium-9">
+          <input id="track-number" required type="text" name="track[track_number]" value="<%= @track.track_number %>"/>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <!-- artist -->
+        <div class="columns small-12 medium-3">
+          <span class="prefix">Artist</label>
+        </div>
+        <div class="columns small-12 medium-9">
+          <input id="artist" required type="text" name="track[artist]" value="<%= @track.artist %>"/>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <!-- album -->
+        <div class="columns small-12 medium-3">
+          <span class="prefix">Album</label>
+        </div>
+        <div class="columns small-12 medium-9">
+          <input id="album" type="text" name="track[album]" value="<%= @track.album %>"/>
+        </div>
+      </div>
+
+
+      <div class="row collapse">
+        <!-- title -->
+        <div class="columns small-12 medium-3">
+          <span class="prefix">Title</label>
+        </div>
+        <div class="columns small-12 medium-9">
+          <input id="title" required type="text" name="track[title]" value="<%= @track.title %>"/>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <!--cancel -->
+        <div class="columns small-12 medium-2">
+          <a href="<%= tracks_path %>" class="button secondary">Cancel</a>
+        </div>
+        <div class="columns small-12 medium-2">
+          <!-- update -->
+          <button type="submit" class="success">Update</button>
+        </div>
+      <div/>
+
+    </div>
+  </div>
+  <% end %>
+</div>
