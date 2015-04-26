@@ -14,10 +14,25 @@
       </div>
 
       <div class="row collapse">
-        <ul class="button-group">
-          <li><a href="<%= playlists_path %>" class="button secondary">Cancel</a></li>
-          <li><button type="submit" class="success">Update</button></li>
-        </ul>
+        <div class="columns small-12 medium-6">
+          <ul class="button-group radius">
+            <li><a href="<%= playlists_path %>" class="button secondary small">Cancel</a></li>
+            <li><button type="submit" class="success small">Update</button></li>
+          </ul>
+        <div/>
+      <div/>
+
+      <div class="row collapse">
+        <%= render 'shared/tracks' %>
+      </div>
+
+      <div class="row collapse">
+        <div class="columns small-12 medium-6">
+          <ul class="button-group radius">
+            <li><a href="<%= playlists_path %>" class="button secondary small">Cancel</a></li>
+            <li><button type="submit" class="success small">Update</button></li>
+          </ul>
+        <div/>
       <div/>
 
     </div>

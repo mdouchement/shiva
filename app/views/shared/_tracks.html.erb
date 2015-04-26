@@ -1,0 +1,39 @@
+<div class="row">
+  <table role="grid">
+    <thead>
+      <tr>
+        <% if @playlist %>
+          <th width="200">Selected</th>
+        <% end %>
+        <th width="200">Artist</th>
+        <th width="200">Album</th>
+        <th width="200">Track</th>
+        <th width="200">Title</th>
+        <% unless @playlist %>
+          <th width="200"></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tracks.each do |track| %>
+        <tr>
+          <% if @playlist %>
+          <td>
+            <span class="switch small radius">
+              <%= check_box('playlist[track]', track.id, checked: track.playlists.include?(@playlist)) %>
+              <label for="playlist_track_<%= track.id %>"></label>
+            </span>
+          </td>
+          <% end %>
+          <td><%= track.artist %></td>
+          <td><%= track.album %></td>
+          <td><%= track.track_number %></td>
+          <td><%= track.title %></td>
+          <% unless @playlist %>
+            <td><a href="<%= edit_track_path(track.id) %>" class="button tiny info radius">Edit</a></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

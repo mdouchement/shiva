@@ -12,10 +12,13 @@
         <tr>
           <td><%= playlist.name %></td>
           <td><%= playlist.tracks.count %></td>
-          <td><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info">Edit</a></td>
+          <td>
+            <span><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info radius">Edit</a></span>
+            <span><%= button_to 'Delete', playlist, method: :delete, class: 'button tiny alert radius' %></span>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <a href="<%= new_playlist_path %>" class="button radius secondary">+</a>
+  <a href="<%= new_playlist_path %>" class="button secondary small radius">+</a>
 </div>
