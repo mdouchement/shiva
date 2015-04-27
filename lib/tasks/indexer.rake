@@ -11,20 +11,19 @@ task indexer: :environment do
     @song = song
     @info = AudioInfo.open(song)
     stream = create_stream
-    Track.find_or_create_by(track_params) do |track|
-      track.stream = stream
+    Track.find_or_create_by!(hexdigest: hexdigest).tap do |track|
+      track.update_attributes!(track_params.merge(stream: stream))
     end
     STDOUT.puts "Indexed #{stream[:id]} - #{song}"
   end
 end
 
 def create_stream
-  Stream.find_or_create_by(path: @song).tap do |s|
+  Stream.find_or_create_by!(path: @song, hexdigest: hexdigest).tap do |s|
     s.update_attributes!(
       size: File.size(@song),
       content_type: 'audio/ogg',
-      x_content_duration: @info.length,
-      hexdigest: hexdigest
+      x_content_duration: @info.length
     )
   end
 end
