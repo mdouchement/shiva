@@ -20,7 +20,7 @@ module StreamingHeaders
 
   def duration_headers
     response.headers['Content-Duration'] = response.headers['X-Content-Duration'] =
-      @stream.x_content_duration.to_s
+      @stream.duration.to_s
   end
 
   # Handle Seekbar

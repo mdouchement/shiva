@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20150425185330) do
     t.string   "path"
     t.integer  "size"
     t.string   "content_type"
-    t.float    "x_content_duration"
+    t.integer  "duration"
     t.string   "hexdigest"
     t.integer  "track_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "tracks", force: :cascade do |t|

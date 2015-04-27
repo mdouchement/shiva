@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :streams, only: :show
   resources :tracks
   resources :playlists
+  get '/playlists/:id/download' => 'playlists#download', as: :download_playlist
 end

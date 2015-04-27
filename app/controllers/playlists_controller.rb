@@ -1,5 +1,8 @@
 class PlaylistsController < ApplicationController
   include PlaylistTracksUpdater
+  include PlaylistGenerator
+
+  before_action :authenticate_user!
 
   def index
     @playlists = Playlist.all
@@ -41,6 +44,14 @@ class PlaylistsController < ApplicationController
       flash[:alert] = @playlist.errors.full_messages
       redirect_to new_playlist_path
     end
+  end
+
+  def download
+    playlist = Playlist.find(params[:id])
+    send_data m3u8_playlist(playlist.tracks),
+      filename: "#{playlist.name}.m3u8",
+      type: 'text/plain',
+      disposition: 'attachment'
   end
 
   def destroy

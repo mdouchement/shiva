@@ -23,7 +23,7 @@ def create_stream
     s.update_attributes!(
       size: File.size(@song),
       content_type: 'audio/ogg',
-      x_content_duration: @info.length
+      duration: @info.length
     )
   end
 end

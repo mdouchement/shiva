@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @playlist = Playlist.find(params[:playlist_id]) if params[:playlist_id]
     @tracks = Track.all

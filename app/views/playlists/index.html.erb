@@ -13,6 +13,7 @@
           <td><%= playlist.name %></td>
           <td><%= playlist.tracks.count %></td>
           <td>
+            <span><a href="<%= download_playlist_path(playlist.id) %>" class="button tiny info radius">Download</a></span>
             <span><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info radius">Edit</a></span>
             <span><%= button_to 'Delete', playlist, method: :delete, class: 'button tiny alert radius' %></span>
           </td>

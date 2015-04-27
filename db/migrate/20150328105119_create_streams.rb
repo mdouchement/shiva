@@ -4,7 +4,7 @@ class CreateStreams < ActiveRecord::Migration
       t.string :path
       t.integer :size
       t.string :content_type
-      t.float :x_content_duration
+      t.integer :duration
       t.string :hexdigest
 
       t.belongs_to :track
