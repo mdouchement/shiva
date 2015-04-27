@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  name                   :string           default(""), not null
+#  avatar                 :string           default("http://www.lasanacronistas.net/wp-content/uploads/2011/05/random-icon.png"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
