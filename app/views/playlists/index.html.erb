@@ -4,7 +4,7 @@
       <tr>
         <th width="200">Name</th>
         <th width="200">Number of tracks</th>
-        <th width="200"></th>
+        <th width="400"></th>
       </tr>
     </thead>
     <tbody>
@@ -13,9 +13,13 @@
           <td><%= playlist.name %></td>
           <td><%= playlist.tracks.count %></td>
           <td>
-            <span><a href="<%= download_playlist_path(playlist.id) %>" class="button tiny info radius">Download</a></span>
+            <button data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="inline button tiny info radius dropdown">Download</button>
+            <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
+              <li><a href="<%= download_playlist_path(playlist.id) %>?format=m3u8">M3U8</a></li>
+              <li><a href="<%= download_playlist_path(playlist.id) %>?format=xspf">XSPF</a></li>
+            </ul>
             <span><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info radius">Edit</a></span>
-            <span><%= button_to 'Delete', playlist, method: :delete, class: 'button tiny alert radius' %></span>
+            <span><%= button_to 'Delete', playlist, method: :delete, class: 'inline button tiny alert radius' %></span>
           </td>
         </tr>
       <% end %>

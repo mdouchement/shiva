@@ -47,11 +47,20 @@ class PlaylistsController < ApplicationController
   end
 
   def download
-    playlist = Playlist.find(params[:id])
-    send_data m3u8_playlist(playlist.tracks),
-      filename: "#{playlist.name}.m3u8",
-      type: 'text/plain',
-      disposition: 'attachment'
+    @playlist = Playlist.find(params[:id])
+    case params[:format]
+    when 'm3u8'
+      send_data m3u8_playlist,
+        filename: "#{@playlist.name}.m3u8",
+        type: 'text/plain',
+        disposition: 'attachment'
+    when 'xspf'
+      template = Tilt.new('app/views/playlists/download.xml.builder')
+      send_data template.render(self),
+        filename: "#{@playlist.name}.xspf",
+        type: 'text/plain',
+        disposition: 'attachment'
+    end
   end
 
   def destroy
