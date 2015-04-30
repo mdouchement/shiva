@@ -4,7 +4,7 @@
       <tr>
         <th width="200">Name</th>
         <th width="200">Number of tracks</th>
-        <th width="400"></th>
+        <th width="300"></th>
       </tr>
     </thead>
     <tbody>
@@ -13,17 +13,17 @@
           <td><%= playlist.name %></td>
           <td><%= playlist.tracks.count %></td>
           <td>
-            <button data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="inline button tiny info radius dropdown">Download</button>
+            <a href="#" data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button tiny info radius dropdown">Download</a>
             <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
-              <li><a href="<%= download_playlist_path(playlist.id) %>?format=m3u8">M3U8</a></li>
-              <li><a href="<%= download_playlist_path(playlist.id) %>?format=xspf">XSPF</a></li>
+              <li><%= link_to 'M3U8', download_playlist_path(playlist.id, extension: :m3u8) %></li>
+              <li><%= link_to 'XSPF', download_playlist_path(playlist.id, extension: :xspf) %></li>
             </ul>
-            <span><a href="<%= edit_playlist_path(playlist.id) %>" class="button tiny info radius">Edit</a></span>
-            <span><%= button_to 'Delete', playlist, method: :delete, class: 'inline button tiny alert radius' %></span>
+            <%= link_to 'Edit', edit_playlist_path(playlist.id), class: 'button tiny info radius' %>
+            <%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert tiny radius' %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <a href="<%= new_playlist_path %>" class="button secondary small radius">+</a>
+  <%= link_to '+', new_playlist_path, class: 'button secondary small radius' %>
 </div>

@@ -21,7 +21,7 @@
           <td>
             <span class="switch small radius">
               <%= check_box('playlist[track]', track.id, checked: track.playlists.include?(@playlist)) %>
-              <label for="playlist_track_<%= track.id %>"></label>
+              <%= label_tag "playlist_track_#{track.id}" %>
             </span>
           </td>
           <% end %>
@@ -30,7 +30,7 @@
           <td><%= track.track_number %></td>
           <td><%= track.title %></td>
           <% unless @playlist %>
-            <td><a href="<%= edit_track_path(track.id) %>" class="button tiny info radius">Edit</a></td>
+            <td><%= link_to 'Edit', edit_track_path(track.id), class: 'button tiny info radius' %></td>
           <% end %>
         </tr>
       <% end %>

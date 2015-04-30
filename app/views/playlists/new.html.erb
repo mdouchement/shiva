@@ -6,17 +6,17 @@
       <div class="row collapse">
         <!-- name -->
         <div class="columns small-12 medium-3">
-          <span class="prefix">Name</label>
+          <%= label_tag :name, 'Name', class: 'prefix' %>
         </div>
         <div class="columns small-12 medium-9">
-          <input id="name" required type="text" name="playlist[name]" value=""/>
+          <%= text_field_tag "playlist[name]", nil, required: true %>
         </div>
       </div>
 
       <div class="row collapse">
         <ul class="button-group radius">
-          <li><a href="<%= playlists_path %>" class="button secondary small">Cancel</a></li>
-          <li><button type="submit" class="success small">Create</button></li>
+          <li><%= link_to 'Cancel', playlists_path, class: 'button secondary small' %></li>
+          <li><%= text_field_tag nil, 'Create', type: :submit, class: 'button success small' %></li>
         </ul>
       <div/>
 
@@ -26,8 +26,8 @@
 
       <div class="row collapse">
         <ul class="button-group radius">
-          <li><a href="<%= playlists_path %>" class="button secondary small">Cancel</a></li>
-          <li><button type="submit" class="success small">Create</button></li>
+          <li><%= link_to 'Cancel', playlists_path, class: 'button secondary small' %></li>
+          <li><%= text_field_tag nil, 'Create', type: :submit, class: 'button success small' %></li>
         </ul>
       <div/>
 

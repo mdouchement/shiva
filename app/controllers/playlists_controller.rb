@@ -48,7 +48,7 @@ class PlaylistsController < ApplicationController
 
   def download
     @playlist = Playlist.find(params[:id])
-    case params[:format]
+    case params[:extension]
     when 'm3u8'
       send_data m3u8_playlist,
         filename: "#{@playlist.name}.m3u8",
