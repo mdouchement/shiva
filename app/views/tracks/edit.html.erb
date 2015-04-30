@@ -16,7 +16,7 @@
 
       <div class="row collapse">
         <ul class="button-group radius">
-          <li><%= link_to 'Cancel', tracks_path, class: 'button secondary small' %></li>
+          <li><%= link_to 'Cancel', tracks_path(anchor: @track.id), class: 'button secondary small' %></li>
           <li><%= text_field_tag nil, 'Update', type: :submit, class: 'button success small' %></li>
         </ul>
       <div/>

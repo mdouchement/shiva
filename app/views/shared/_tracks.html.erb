@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <% @tracks.each do |track| %>
-        <tr>
+        <tr id="<%= track.id %>">
           <% if @playlist %>
           <td>
             <span class="switch small radius">

@@ -9,7 +9,7 @@
       <% current_user.reload %>
       <div class="avatar">
         <a data-dropdown="dropdownMenu" href="#" class="has-dropdown">
-          <%= image_tag current_user.avatar, width: '16', alt: '' %>
+          <%= image_tag 'http://cdn.mysitemyway.com/icons-watermarks/simple-black/bfa/bfa_random/bfa_random_simple-black_128x128.png', width: '16', alt: '' %>
           <span class="hide-for-small-only"><%= ' ' + current_user.name %></span>
         </a>
       </div>
