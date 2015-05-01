@@ -5,7 +5,6 @@
 #  id                     :integer          not null, primary key
 #  username               :string           default(""), not null
 #  avatar                 :string
-#  admin                  :boolean          default(FALSE), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null

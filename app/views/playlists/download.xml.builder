@@ -3,7 +3,7 @@ xml.playlist(version: '1', xmlns: 'http://xspf.org/ns/0/') do |p|
   p.trackList do |track_list|
     @playlist.tracks.each do |track|
       track_list.track do |t|
-        t.location stream_url(track.stream.id)
+        t.location signed_stream_url(track.stream.id)
         t.creator track.artist
         t.album track.album
         t.title track.title

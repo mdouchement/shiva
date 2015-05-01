@@ -14,10 +14,13 @@
 ActiveRecord::Schema.define(version: 20150425185330) do
 
   create_table "playlists", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
+    t.string   "token",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "playlists", ["name"], name: "index_playlists_on_name", unique: true
 
   create_table "playlists_tracks", id: false, force: :cascade do |t|
     t.integer "playlist_id"
@@ -57,17 +60,16 @@ ActiveRecord::Schema.define(version: 20150425185330) do
   add_index "tracks_playlists", ["track_id"], name: "index_tracks_playlists_on_track_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               default: "",    null: false
+    t.string   "username",               default: "", null: false
     t.string   "avatar"
-    t.boolean  "admin",                  default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

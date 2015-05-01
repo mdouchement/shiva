@@ -36,7 +36,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
+    @playlist = Playlist.new(playlist_params.merge(token: SecureRandom.hex))
     update_tracks(params[:playlist][:track])
     if @playlist.save
       redirect_to playlists_path
@@ -72,6 +72,6 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :token)
   end
 end

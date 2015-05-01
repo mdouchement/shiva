@@ -17,3 +17,11 @@
 
 //= require foundation
 $(function(){ $(document).foundation(); });
+
+function secureRandomHex() {
+  return CryptoJS.MD5(Date.now().toString());
+}
+
+function refreshToken(id) {
+  document.getElementById(id).value = secureRandomHex();
+}
