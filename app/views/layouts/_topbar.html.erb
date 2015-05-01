@@ -12,7 +12,7 @@
       <div class="avatar">
         <a data-dropdown="dropdownMenu" href="#" class="has-dropdown">
           <%= image_tag 'avatar.png', width: '16', alt: '' %>
-          <span class="hide-for-small-only"><%= ' ' + current_user.name %></span>
+          <span class="hide-for-small-only"><%= ' ' + current_user.username.humanize %></span>
         </a>
       </div>
     <% else %>

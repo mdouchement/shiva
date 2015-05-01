@@ -1,10 +1,13 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :name, null: false, default: ''
-      t.string :avatar, null: false, default: 'http://www.lasanacronistas.net/wp-content/uploads/2011/05/random-icon.png'
+      t.string :username, null: false, default: ''
+      t.string :avatar, null: true
+      t.boolean :admin, null: false, default: false
 
       t.timestamps null: false
     end
+
+    add_index :users, :username, unique: true
   end
 end

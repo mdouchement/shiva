@@ -3,8 +3,9 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string           default(""), not null
-#  avatar                 :string           default("http://www.lasanacronistas.net/wp-content/uploads/2011/05/random-icon.png"), not null
+#  username               :string           default(""), not null
+#  avatar                 :string
+#  admin                  :boolean          default(FALSE), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -22,11 +23,24 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         authentication_keys: %i(login)
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if (login = conditions.delete(:login))
+      where(conditions.to_hash).where(
+        ['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+    else
+      where(conditions.to_hash).first
+    end
+  end
 end

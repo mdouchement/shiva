@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
-  devise_for :users
+  devise_for :users, skip: %i(registrations passwords)
 
   resources :streams, only: :show
   resources :tracks

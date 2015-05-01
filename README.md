@@ -4,4 +4,14 @@ Audio media server. Only support Opus files.
 
 ## Requirements
  - MRI 2.2.0
- - Mediainfo
+
+## Create admin user
+```rb
+$ bundle exec rails c
+[1] shiva »  User.create!(email: 'mdouchement@testouille.lan', username: 'mdouchement', password: 'trololoyolo', admin: true)
+```
+
+## Indexing songs
+```bash
+$ bundle exec rake indexer /home/mdouchement/opus
+```
