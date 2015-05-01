@@ -1,6 +1,8 @@
 <nav class="row" role="navigation">
   <div class="title-area left">
-    <h1>Shiva</h1>
+    <h1>
+      <a data-target="home" href="/#">Shiva</a>
+    </h1>
   </div>
   <!-- Right Nav Section -->
   <div class="right">
@@ -9,7 +11,7 @@
       <% current_user.reload %>
       <div class="avatar">
         <a data-dropdown="dropdownMenu" href="#" class="has-dropdown">
-          <%= image_tag 'http://cdn.mysitemyway.com/icons-watermarks/simple-black/bfa/bfa_random/bfa_random_simple-black_128x128.png', width: '16', alt: '' %>
+          <%= image_tag 'avatar.png', width: '16', alt: '' %>
           <span class="hide-for-small-only"><%= ' ' + current_user.name %></span>
         </a>
       </div>

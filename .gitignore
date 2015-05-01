@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 TODO.md
+
+# Ignore fucking OSX files
+*.DS_Store
