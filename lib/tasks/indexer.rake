@@ -7,6 +7,7 @@ task indexer: :environment do
   end
   fail "#{music_directory} is not a directory" unless File.directory?(music_directory)
 
+  @hexdigests = {}
   Dir["#{music_directory}/**/*.{opus}"].each do |song|
     @song = song
     @info = AudioInfo.open(song)
@@ -37,5 +38,5 @@ def track_params
 end
 
 def hexdigest
-  Digest::SHA2.file(@song).hexdigest
+  @hexdigests[@song] ||= Digest::SHA2.file(@song).hexdigest
 end
