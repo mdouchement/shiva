@@ -13,9 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require foundation
+//= require crypto-js-rollups-md5
 //= require_tree .
 
-//= require foundation
 $(function(){ $(document).foundation(); });
 
 function secureRandomHex() {

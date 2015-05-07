@@ -11,7 +11,7 @@
       <% current_user.reload %>
       <div class="avatar">
         <a data-dropdown="dropdownMenu" href="#" class="has-dropdown">
-          <%= image_tag 'avatar.png', width: '16', alt: '' %>
+          <i class="icon-shuffle size-title"></i>
           <span class="hide-for-small-only"><%= ' ' + current_user.username.humanize %></span>
         </a>
       </div>
@@ -19,7 +19,10 @@
       <!-- Use smooth scrolling only when on the same page -->
       <% if request.original_fullpath != new_user_session_path %>
         <div class="right">
-          <%= link_to 'Log in', new_user_session_path, class:'login button small radius', data: { 'target': 'login' } %>
+          <%= link_to new_user_session_path, class:'login button small radius', data: { 'target': 'login' } do %>
+          <i class="icon-enter small"></i>
+          Log In
+          <% end %>
         </div>
       <% end %>
     <% end %>
@@ -48,8 +51,7 @@
     <!-- logout -->
     <li>
       <%= link_to destroy_user_session_path, method: :delete, id: 'logout' do %>
-      <i class="icon-settings-power"></i>
-      Logout
+      <i class="icon-exit"></i> Logout
       <% end %>
     </li>
   </ul>

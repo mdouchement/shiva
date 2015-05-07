@@ -13,7 +13,10 @@
           <td><%= playlist.name %></td>
           <td><%= playlist.tracks.count %></td>
           <td>
-            <a href="#" data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button tiny info radius dropdown">Download</a>
+            <a href="#" data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button tiny info radius dropdown">
+              <i class="icon-download3"></i>
+              Download
+            </a>
             <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
               <li><%= link_to 'M3U8', download_playlist_path(playlist.id, extension: :m3u8) %></li>
               <li><%= link_to 'XSPF', download_playlist_path(playlist.id, extension: :xspf) %></li>
