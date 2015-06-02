@@ -1,0 +1,26 @@
+div class="row"
+  table role="grid"
+    thead
+      tr
+        th width="200" Name
+        th width="200" Number of tracks
+        th width="300"
+
+    tbody
+      - @playlists.each do |playlist|
+        tr
+          td = playlist.name
+          td = playlist.tracks.count
+          td
+            a href="#" data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button tiny info radius dropdown"
+              i class="icon-download3"
+              | Download
+
+            ul.dropdown id="drop" class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1"
+              li = link_to 'M3U8', download_playlist_path(playlist.id, extension: :m3u8)
+              li = link_to 'XSPF', download_playlist_path(playlist.id, extension: :xspf)
+
+            = link_to 'Edit', edit_playlist_path(playlist.id), class: 'button tiny info radius'
+            = link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert tiny radius'
+
+  = link_to '+', new_playlist_path, class: 'button secondary small radius'

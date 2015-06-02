@@ -1,0 +1,17 @@
+div class="row"
+  = form_for @track do |f|
+    div class="panel-container"
+      div class="panel-content"
+
+        - %i(track_number artist album title).each do |field|
+          div class="row collapse"
+            div class="columns small-12 medium-3"
+              = label_tag field, field.to_s.humanize, class: 'prefix'
+
+            div class="columns small-12 medium-9"
+              = text_field_tag "track[#{field}]", @track.send(field), required: true
+
+        div class="row collapse"
+          ul class="button-group radius"
+            = link_to 'Cancel', tracks_path(anchor: @track.id), class: 'button secondary small'
+            = text_field_tag nil, 'Update', type: :submit, class: 'button success small'

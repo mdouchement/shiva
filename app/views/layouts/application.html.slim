@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Shiva
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = javascript_include_tag 'vendor/modernizr'
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = csrf_meta_tags
+
+body class="antialiased"
+
+header
+  = render 'layouts/topbar'
+
+== yield
+
+footer
+  div class="row"
+    div class="columns large-6 legal right"
+      = link_to 'Shiva', 'https://github.com/mdouchement/shiva', target:'_blank'

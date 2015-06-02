@@ -1,0 +1,48 @@
+nav class="row" role="navigation"
+  div class="title-area left"
+    h1
+      a data-target="home" href="/#" Shiva
+
+  /! Right Nav Section
+  div class="right"
+    br
+    - if current_user
+      current_user.reload
+      div class="avatar"
+        a data-dropdown="dropdownMenu" href="#" class="has-dropdown"
+          i class="icon-shuffle size-title"
+          span class="hide-for-small-only"
+          = ' ' + current_user.username.humanize
+    - else
+      /! Use smooth scrolling only when on the same page
+      - if request.original_fullpath != new_user_session_path
+          div class="right"
+            = link_to new_user_session_path, class:'login button small radius', data: { 'target': 'login' } do
+              i class="icon-enter small"
+              |  Log In
+  br
+  br
+  br
+  - if current_user
+    div
+      ul class="button-group radius"
+        - case request.original_fullpath
+          - when tracks_path
+            li
+              a class="button tiny secondary" href="#{playlists_path}" Playlists
+          - when playlists_path
+            li
+              a class="button tiny secondary" href="#{tracks_path}" Tracks
+          - else
+            li
+              a class="button tiny secondary" href="#{tracks_path}" Tracks
+            li
+              a class="button tiny secondary" href="#{playlists_path}" Playlists
+
+/! logout
+div class="row dropdown-menu-container"
+  ul.dropdown id="dropdownMenu" class="f-dropdown" aria-hidden="true"
+    li
+      = link_to destroy_user_session_path, method: :delete, id: 'logout' do
+        i class="icon-exit"
+        | Logout

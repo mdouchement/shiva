@@ -1,0 +1,24 @@
+div class="row"
+  = form_for @playlist do |f|
+    div class="panel-container"
+      div class="panel-content"
+
+        div class="row collapse"
+          div class="columns small-12 medium-3"
+            = label_tag :name, 'Name', class: 'prefix'
+
+          div class="columns small-12 medium-9"
+            = text_field_tag "playlist[name]", nil, required: true
+
+        div class="row collapse"
+          ul class="button-group radius"
+            li = link_to 'Cancel', playlists_path, class: 'button secondary small'
+            li = text_field_tag nil, 'Create', type: :submit, class: 'button success small'
+
+        div class="row collapse"
+          = render 'shared/tracks'
+
+        div class="row collapse"
+          ul class="button-group radius"
+            li = link_to 'Cancel', playlists_path, class: 'button secondary small'
+            li = text_field_tag nil, 'Create', type: :submit, class: 'button success small'

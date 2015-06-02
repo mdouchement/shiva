@@ -1,0 +1,29 @@
+div class="row"
+  table role="grid"
+    thead
+      tr
+        - if @playlist
+          th width="200" Selected
+
+        th width="200" Artist
+        th width="200" Album
+        th width="200" Track
+        th width="200" Title
+        - unless @playlist
+          th width="200"
+
+    tbody
+      - @tracks.each do |track|
+        tr id==track.id
+          - if @playlist
+            td
+              span class="switch small radius"
+                = check_box('playlist[track]', track.id, checked: track.playlists.include?(@playlist))
+                = label_tag "playlist_track_#{track.id}"
+
+          td = track.artist
+          td = track.album
+          td = track.track_number
+          td = track.title
+          - unless @playlist
+            td = link_to 'Edit', edit_track_path(track.id), class: 'button tiny info radius'
