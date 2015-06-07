@@ -1,7 +1,7 @@
 nav class="row" role="navigation"
   div class="title-area left"
     h1
-      a data-target="home" href="/#" Shiva
+      = link_to 'Shiva', root_path, data: { 'target': 'home' }
 
   /! Right Nav Section
   div class="right"
@@ -29,15 +29,15 @@ nav class="row" role="navigation"
         - case request.original_fullpath
           - when tracks_path
             li
-              a class="button tiny secondary" href="#{playlists_path}" Playlists
+              = link_to 'Playlist', playlists_path, class: 'button tiny secondary'
           - when playlists_path
             li
-              a class="button tiny secondary" href="#{tracks_path}" Tracks
+              = link_to 'Tracks', tracks_path, class: 'button tiny secondary'
           - else
             li
-              a class="button tiny secondary" href="#{tracks_path}" Tracks
+              = link_to 'Tracks', tracks_path, class: 'button tiny secondary'
             li
-              a class="button tiny secondary" href="#{playlists_path}" Playlists
+              = link_to 'Playlist', playlists_path, class: 'button tiny secondary'
 
 /! logout
 div class="row dropdown-menu-container"
