@@ -3,7 +3,7 @@
 require ::File.expand_path('../config/environment', __FILE__)
 
 # Production namespace like `https://my_url/shiva/users`
-# map '/shiva'
+map ENV['SHIVA_NAMESPACE'] if ENV['SHIVA_NAMESPACE']
 run Rails.application
 
 require 'rack/cors'
