@@ -8,7 +8,7 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     setup_headers
 
-    response.status = 206
+    response.status = :partial_content
     stream_file(@stream.path) do |chunk|
       response.stream.write chunk
     end

@@ -28,7 +28,6 @@ module StreamingHeaders
     @range_begin = 0
     @range_end = @stream.size - 1
     if request.headers['Range']
-      @status = :partial_content
       request.headers['Range'].match(/bytes=(?<begin>\d+)-(?<end>\d*)/) do |match|
         @range_begin = match[:begin].to_i
         @range_end = match[:end].to_i if match[:end].present?
@@ -36,8 +35,6 @@ module StreamingHeaders
 
       response.headers['Content-Range'] = "bytes #{@range_begin}-#{
         @range_end.to_i}/#{@stream.size}"
-    else
-      @status = :ok
     end
     response.headers['Content-Length'] = (@range_end - @range_begin).to_s
   end
