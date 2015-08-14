@@ -6,8 +6,10 @@ RUN mkdir -p /data/storage
 RUN mkdir -p /data/db
 WORKDIR /usr/src/app
 
+ENV LANG C.UTF-8
 ENV RAILS_ENV production
 ENV RACK_ENV production
+ENV DEVISE_SECRET_KEY tmp_376ea25aaa66984733a90920c263ba138e1e571aaf3a1a54cd2b819cb06e8b7fb311027b639eb8f55d8d53c27cf2df378ceb36008462057861d824bd13a0
 ENV STORAGE_DIRECTORY /data/storage
 ENV DATABASE_PATH /data/db/production.sqlite3
 
@@ -26,4 +28,6 @@ VOLUME /data/db
 EXPOSE 3000
 CMD bundle exec rake db:migrate && \
     bundle exec rake indexer /data/storage && \
-    SECRET_KEY_BASE=$(bundle exec rake secret) bundle exec unicorn -p 3000 -c config/unicorn.rb
+    SECRET_KEY_BASE=$(bundle exec rake secret) \
+    DEVISE_SECRET_KEY=$(bundle exec rake secret) \
+    bundle exec unicorn -p 3000 -c config/unicorn.rb
