@@ -1,22 +1,21 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!
+  before_action :fetch_track, only: %i(show edit update)
 
   def index
-    @playlist = Playlist.find(params[:playlist_id]) if params[:playlist_id]
-    @tracks = Track.all
+    @playlist = current_user.playlists.find(params[:playlist_id]) if params[:playlist_id]
+    @tracks = current_user.tracks
   end
 
   def edit
-    @track = Track.find(params[:id])
   end
 
   def update
-    track = Track.find(params[:id])
-    if track.update_attributes(track_params)
+    if @track.update_attributes(track_params)
       redirect_to tracks_path
     else
-      flash[:alert] = track.errors.full_messages
-      redirect_to edit_track_path(track.id)
+      flash[:alert] = @track.errors.full_messages
+      redirect_to edit_track_path(@track.id)
     end
   end
 
@@ -24,5 +23,9 @@ class TracksController < ApplicationController
 
   def track_params
     params.require(:track).permit(:track_number, :artist, :album, :title)
+  end
+
+  def fetch_track
+    @track = current_user.tracks.find(params[:id])
   end
 end

@@ -6,6 +6,7 @@ task indexer: :environment do
     fail 'Bad command! Pattern: bundle exec rake indexer /path/to/my/music/dir'
   end
   fail "#{music_directory} is not a directory" unless File.directory?(music_directory)
+  user = User.first
 
   @hexdigests = {}
   Dir["#{music_directory}/**/*.{opus}"].each do |song|
@@ -13,7 +14,7 @@ task indexer: :environment do
     @info = AudioInfo.open(song)
     stream = create_stream
     Track.find_or_create_by!(hexdigest: hexdigest).tap do |track|
-      track.update_attributes!(track_params.merge(stream: stream))
+      track.update_attributes!(track_params.merge(stream: stream, user: user))
     end
     STDOUT.puts "Indexed #{stream[:id]} - #{song}"
   end

@@ -1,6 +1,7 @@
 class CreateTracks < ActiveRecord::Migration
   def change
     create_table :tracks do |t|
+      t.belongs_to :user
       t.string :album
       t.string :artist
       t.string :title
@@ -9,5 +10,10 @@ class CreateTracks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :tracks, :album
+    add_index :tracks, :artist
+    add_index :tracks, :title
+    add_index :tracks, :hexdigest
   end
 end

@@ -3,23 +3,21 @@ class PlaylistsController < ApplicationController
   include PlaylistGenerator
 
   before_action :authenticate_user!
+  before_action :fetch_playlist, only: %i(show edit update download destroy)
 
   def index
-    @playlists = Playlist.all
+    @playlists = current_user.playlists
   end
 
   def show
-    @playlist = Playlist.find(params[:id])
     @tracks = @playlist.tracks
   end
 
   def edit
-    @playlist = Playlist.find(params[:id])
-    @tracks = Track.all
+    @tracks = current_user.tracks
   end
 
   def update
-    @playlist = Playlist.find(params[:id])
     @playlist.assign_attributes(playlist_params)
     update_tracks(params[:playlist][:track])
     if @playlist.save
@@ -36,7 +34,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.new(playlist_params.merge(token: SecureRandom.hex))
+    @playlist = Playlist.new(playlist_params.merge(user: current_user, token: SecureRandom.hex))
     update_tracks(params[:playlist][:track])
     if @playlist.save
       redirect_to playlists_path
@@ -47,7 +45,6 @@ class PlaylistsController < ApplicationController
   end
 
   def download
-    @playlist = Playlist.find(params[:id])
     case params[:extension]
     when 'm3u8'
       send_data m3u8_playlist,
@@ -64,8 +61,7 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    playlist = Playlist.find(params[:id])
-    playlist.destroy
+    @playlist.destroy!
     redirect_to playlists_path
   end
 
@@ -73,5 +69,9 @@ class PlaylistsController < ApplicationController
 
   def playlist_params
     params.require(:playlist).permit(:name, :token)
+  end
+
+  def fetch_playlist
+    @playlist = current_user.playlists.find(params[:id])
   end
 end

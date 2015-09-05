@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: %i(login)
 
+  has_many :tracks, dependent: :destroy
+  has_many :playlists, dependent: :destroy
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))

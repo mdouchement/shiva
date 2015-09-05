@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150425185330) do
 
   create_table "playlists", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name",       null: false
     t.string   "token",      null: false
     t.datetime "created_at", null: false
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150425185330) do
   end
 
   create_table "tracks", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "album"
     t.string   "artist"
     t.string   "title"
@@ -50,6 +52,11 @@ ActiveRecord::Schema.define(version: 20150425185330) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "tracks", ["album"], name: "index_tracks_on_album"
+  add_index "tracks", ["artist"], name: "index_tracks_on_artist"
+  add_index "tracks", ["hexdigest"], name: "index_tracks_on_hexdigest"
+  add_index "tracks", ["title"], name: "index_tracks_on_title"
 
   create_table "tracks_playlists", id: false, force: :cascade do |t|
     t.integer "playlist_id"
