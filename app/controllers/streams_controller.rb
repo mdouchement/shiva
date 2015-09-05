@@ -6,13 +6,8 @@ class StreamsController < ApplicationController
 
   def show
     @stream = Stream.find(params[:id])
-    setup_headers
 
-    response.status = :partial_content
-    stream_file(@stream.path) do |chunk|
-      response.stream.write chunk
-    end
-    response.stream.close
+    send("use_#{@stream.track.user.streaming_behavior}")
   end
 
   private
@@ -22,5 +17,25 @@ class StreamsController < ApplicationController
       p = Playlist.find_by(name: name)
       p.present? && p.token == token
     end
+  end
+
+  def use_send_file
+    send_file @stream.path,
+      filename: @stream.path.split('/').last,
+      type: @stream.content_type,
+      status: @status,
+      disposition: 'inline',
+      stream: 'true',
+      buffer_size: 32_768
+  end
+
+  def use_real_stream
+    setup_headers
+
+    response.status = :partial_content
+    stream_file(@stream.path) do |chunk|
+      response.stream.write chunk
+    end
+    response.stream.close
   end
 end

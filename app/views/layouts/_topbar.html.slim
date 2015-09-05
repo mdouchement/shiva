@@ -43,6 +43,10 @@ nav class="row" role="navigation"
 div class="row dropdown-menu-container"
   ul.dropdown id="dropdownMenu" class="f-dropdown" aria-hidden="true"
     li
+      = link_to me_users_path, id: 'profile' do
+        i class="icon-cogs"
+        |  Settings
+    li
       = link_to destroy_user_session_path, method: :delete, id: 'logout' do
         i class="icon-exit"
-        | Logout
+        |  Logout

@@ -1,0 +1,28 @@
+div class="row"
+  = form_for current_user do |f|
+    div class="panel-container"
+      div class="panel-content"
+
+        div class="row collapse"
+          /! streaming
+          div class="columns small-12 medium-3"
+            = label_tag :name, 'Streaming behavior', class: 'prefix'
+
+          div class="columns small-12 medium-9"
+            select name='user[streaming_behavior]'
+              option value='send_file' Send file (stable)
+              option value='real_stream' Streaming (unstable, seek bar supported)
+
+        div class="row collapse"
+          /! indexing
+          div class="columns small-12 medium-3"
+            = label_tag :name, 'Media indexing', class: 'prefix'
+
+          div class="columns small-12 medium-9"
+            = text_field_tag 'user[reindexing_path]', current_user.reindexing_path, required: true
+
+        div class="row collapse"
+          div class="columns small-12 medium-6"
+            ul class="button-group radius"
+              li = text_field_tag 'reindexing_action', 'Re-indexing', type: :submit, class: 'button small'
+              li = text_field_tag 'update_action', 'Update', type: :submit, class: 'button success small'

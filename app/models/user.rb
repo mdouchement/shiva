@@ -5,6 +5,8 @@
 #  id                     :integer          not null, primary key
 #  username               :string           default(""), not null
 #  avatar                 :string
+#  streaming_behavior     :string           default("send_file")
+#  reindexing_path        :string           default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null

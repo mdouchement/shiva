@@ -13,8 +13,8 @@ div class="row"
           td = playlist.tracks.count
           td
             a href="#" data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button tiny info radius dropdown"
-              i class="icon-download3"
-              | Download
+              i class="icon-download"
+              |  Download
 
             ul.dropdown id="drop" class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1"
               li = link_to 'M3U8', download_playlist_path(playlist.id, extension: :m3u8)

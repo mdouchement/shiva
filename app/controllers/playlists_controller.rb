@@ -9,10 +9,6 @@ class PlaylistsController < ApplicationController
     @playlists = current_user.playlists
   end
 
-  def show
-    @tracks = @playlist.tracks
-  end
-
   def edit
     @tracks = current_user.tracks
   end
