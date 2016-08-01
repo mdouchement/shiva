@@ -27,7 +27,6 @@ VOLUME /data/storage
 VOLUME /data/db
 EXPOSE 3000
 CMD bundle exec rake db:migrate && \
-    bundle exec rake indexer /data/storage && \
     SECRET_KEY_BASE=$(bundle exec rake secret) \
     DEVISE_SECRET_KEY=$(bundle exec rake secret) \
     bundle exec unicorn -p 3000 -c config/unicorn.rb
